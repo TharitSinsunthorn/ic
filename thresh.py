@@ -5,7 +5,9 @@ import numpy as np
 def threshold_impl(src, thresh, maxval):
     width = src.shape[1]
     height = src.shape[0]
-    dest = np.zeros_like(src)
+    
+    # zero-initialized image with the same size and data type as src
+    dest = np.zeros_like(src)   
     for j in range(height):
         for i in range(width):
             if src[j, i] > thresh:
