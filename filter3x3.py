@@ -21,12 +21,25 @@ def filter3x3_impl(src, weight):
             for n in range(3):
                 for m in range(3):
                     sum += weight[n, m] * src[j + n - 1, i + m - 1]
-                dest[j, i] = sum
+            dest[j, i] = sum
 
     return dest
 
 
 def get_weight(filter_type):
+    """Get weight of the filter corresponding to the filter type
+
+    Args:
+        filter_type (int):  0: Blur filter.
+                            1: Horizontal edge detection (Sobel).
+                            2: Vertical edge detection (Sobel).
+                            3: Laplacian filter.
+                            4: Sharpening filter.
+                            Other values: Identity filter.
+
+    Returns:
+        np.array([3,3]): _description_
+    """
     if filter_type == 0:
         is_signed = False
         weight = 1.0 / 8 * np.array([[0, 1, 0],
